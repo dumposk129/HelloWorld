@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <resources>
 
     <!-- Base application theme. -->
@@ -8,4 +9,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextViewStyle">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextViewStyle.Green">
+        <item name="android:textColor">@color/colorGreen</item>
+    </style>
 </resources>

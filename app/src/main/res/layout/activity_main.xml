@@ -6,114 +6,156 @@
     android:layout_height="match_parent"
     tools:context="com.dump129.helloworld.MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="395dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="vertical"
+        android:layout_height="515dp"
+        android:fillViewport="true"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="8dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="395dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="81dp">
 
-            <EditText
-                android:id="@+id/etNumber1"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="0"
-                android:inputType="number" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etNumber2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="0"
-                android:inputType="number" />
+                <EditText
+                    android:id="@+id/etNumber1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:inputType="number" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="=" />
+                <EditText
+                    android:id="@+id/etNumber2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:inputType="number" />
 
-            <TextView
-                android:id="@+id/tvResult"
-                android:layout_width="0dp"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="=" />
+
+                <TextView
+                    android:id="@+id/tvResult"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    style="@style/TextViewStyle"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCalculate"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/calculate"
+                android:textColor="@android:color/holo_red_light" />
+
+            <RadioGroup
+                android:id="@+id/rgCalculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+" />
+
+                <RadioButton
+                    android:id="@+id/rbMinus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="-" />
+
+                <RadioButton
+                    android:id="@+id/rbMultiply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="*" />
+
+                <RadioButton
+                    android:id="@+id/rbDivide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="/" />
+
+            </RadioGroup>
+
+            <include layout="@layout/sample_bar" />
+
+            <com.dump129.helloworld.CustomViewGroup
+                android:id="@+id/viewGroup1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.dump129.helloworld.CustomViewGroup>
+
+            <com.dump129.helloworld.CustomViewGroup
+                android:id="@+id/viewGroup2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.dump129.helloworld.CustomViewGroup>
+
+            <com.dump129.helloworld.CustomView
+                android:layout_width="match_parent"
+                android:layout_height="160dp" />
+
+            <com.dump129.helloworld.CustomView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                app:isBlue="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:background="@color/colorAccent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_launcher" />
+
+                <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_launcher" />
+            </LinearLayout>
+
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btnCalculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/calculate" />
-
-        <RadioGroup
-            android:id="@+id/rgCalculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbPlus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+" />
-
-            <RadioButton
-                android:id="@+id/rbMinus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="-" />
-
-            <RadioButton
-                android:id="@+id/rbMultiply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="*" />
-
-            <RadioButton
-                android:id="@+id/rbDivide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:text="/" />
-
-        </RadioGroup>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_launcher" />
-
-            <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

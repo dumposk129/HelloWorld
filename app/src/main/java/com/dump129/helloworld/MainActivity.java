@@ -4,24 +4,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuInflater;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText etNumber1, etNumber2;
     private TextView tvResult;
     private Button btnCalculate;
-    private RadioButton rbPlus, rbMinus, rbMultiply, rbDivide;
     private RadioGroup radioGroup;
+    private CustomViewGroup customViewGroup1, customViewGroup2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvResult = (TextView) findViewById(R.id.tvResult);
         btnCalculate = (Button) findViewById(R.id.btnCalculate);
         radioGroup = (RadioGroup) findViewById(R.id.rgCalculate);
+
+        customViewGroup1 = (CustomViewGroup) findViewById(R.id.viewGroup1);
+        customViewGroup2 = (CustomViewGroup) findViewById(R.id.viewGroup2);
+        customViewGroup1.setBtnHelloText("Hello");
+        customViewGroup2.setBtnHelloText("World");
 
         btnCalculate.setOnClickListener(this);
     }
