@@ -1,6 +1,7 @@
 package com.dump129.helloworld;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,9 +24,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RadioGroup radioGroup;
     private CustomViewGroup customViewGroup1, customViewGroup2;
 
+    int x, y, z; // Save/Restore in Activity's instance state
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // check mobile or tablet, mobile can't orientation but tablet can it.
+        if (getResources().getBoolean(R.bool.portrait_only)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+
         setContentView(R.layout.activity_main);
 
         initInstances();
@@ -86,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(MainActivity.this, "Result = " + result, Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-            intent.putExtra("result", result);
+            intent.putExtra("sum", result);
 
             // Bundle
             Coordinate c1 = new Coordinate();
@@ -113,8 +122,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             c3.z = 20;
             intent.putExtra("cParcelable", c3);
 
-            startActivity(intent);
+            int requestCode = 100;
+            startActivityForResult(intent, requestCode);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Check if ti is a result from SecondActivity
+        //
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            // Get data from data's extra
+            String result = data.getStringExtra("result");
+            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("onStart", "onStart");
+        Toast.makeText(MainActivity.this, "onStart", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("onRestart", "onRestart");
+        Toast.makeText(MainActivity.this, "onRestart", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("onPause", "onPause");
+        Toast.makeText(MainActivity.this, "onPause", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("onStop", "onStop");
+        Toast.makeText(MainActivity.this, "onStop", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("onDestroy", "onDestroy");
+        Toast.makeText(MainActivity.this, "onDestroy", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -130,5 +188,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save here
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore here
     }
 }

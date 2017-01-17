@@ -56,8 +56,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:freezesText="true"
                     android:gravity="center"
-                    style="@style/TextViewStyle"/>
+                    android:textColor="@color/colorGreen" />
             </LinearLayout>
 
             <Button
@@ -66,6 +67,24 @@
                 android:layout_height="wrap_content"
                 android:text="@string/calculate"
                 android:textColor="@android:color/holo_red_light" />
+
+            <CheckBox
+                android:id="@+id/cb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Checkbox" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Switch" />
+
+            <ToggleButton
+                android:id="@+id/tgBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ToggleButton" />
 
             <RadioGroup
                 android:id="@+id/rgCalculate"
@@ -119,10 +138,12 @@
             </com.dump129.helloworld.CustomViewGroup>
 
             <com.dump129.helloworld.CustomView
+                android:id="@+id/view1"
                 android:layout_width="match_parent"
                 android:layout_height="160dp" />
 
             <com.dump129.helloworld.CustomView
+                android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 app:isBlue="true" />

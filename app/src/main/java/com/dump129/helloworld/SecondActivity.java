@@ -4,10 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
     private TextView tvResult;
+    private Button btnFinish;
+    private EditText etSendData;
 
     private int sum;
 
@@ -17,7 +22,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         Intent intent = getIntent();
-        sum = intent.getIntExtra("result", 0);
+        sum = intent.getIntExtra("sum", 0);
 
         // Bundle
         Bundle bundle = intent.getBundleExtra("cBundle");
@@ -47,7 +52,26 @@ public class SecondActivity extends AppCompatActivity {
 
     private void initInstances() {
         tvResult = (TextView) findViewById(R.id.tvResult);
+        btnFinish = (Button) findViewById(R.id.btnFinish);
+        etSendData = (EditText) findViewById(R.id.etSendData);
+
         tvResult.setText("Result = " + sum);
         tvResult.setTextSize(40);
+
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result", etSendData.getText().toString());
+                setResult(RESULT_OK, returnIntent);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }
