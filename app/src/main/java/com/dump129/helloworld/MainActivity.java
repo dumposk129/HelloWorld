@@ -1,8 +1,10 @@
 package com.dump129.helloworld;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 
 import android.view.MenuItem;
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int num1, num2;
-        float result = 0;
+        int result = 0;
         if (v == btnCalculate) {
 
             // EditText is empty
@@ -79,6 +81,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             tvResult.setText("" + result);
+
+            Log.d("Calculation", "Result = " + result);
+            Toast.makeText(MainActivity.this, "Result = " + result, Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            intent.putExtra("result", result);
+
+            // Bundle
+            Coordinate c1 = new Coordinate();
+            c1.x = 5;
+            c1.y = 10;
+            c1.z = 20;
+            Bundle bundle = new Bundle();
+            bundle.putInt("x", c1.x);
+            bundle.putInt("y", c1.y);
+            bundle.putInt("z", c1.z);
+            intent.putExtra("cBundle", bundle);
+
+            //Serializable
+            // Don't use
+            CoordinateSerializable c2 = new CoordinateSerializable();
+            c2.x = 5;
+            c2.y = 10;
+            c2.z = 20;
+            intent.putExtra("cSerializable", c2);
+
+            CoordinateParcelable c3 = new CoordinateParcelable();
+            c3.x = 5;
+            c3.y = 10;
+            c3.z = 20;
+            intent.putExtra("cParcelable", c3);
+
+            startActivity(intent);
         }
     }
 
